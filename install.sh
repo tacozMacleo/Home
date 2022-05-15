@@ -21,7 +21,6 @@ set_config(){
 }
 
 # Setup dnf
-
 set_config 'fastestmirror' True /etc/dnf/dnf.conf
 set_config 'max_parallel_downloads' 5 /etc/dnf/dnf.conf
 set_config 'keepcache' True /etc/dnf/dnf.conf
@@ -87,6 +86,7 @@ sudo yum --assumeyes install exa bat kitty
 sudo yum --assumeyes install rust.x86_64 cargo
 
 # Install Python Stuff
+sudo yum --assumeyes install python3-pip
 pip3 install ipython
 
 # install Others
