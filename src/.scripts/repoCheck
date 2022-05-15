@@ -1,0 +1,231 @@
+#!/bin/bash
+#-*- coding: utf-8 -*-
+############################################################################### 
+# Formating Functions                                                           
+############################################################################### 
+                                                                                
+error(){                                                                        
+    echo -e "\033[1;31mERROR: \033[2;31m$@ \033[0m"                             
+}                                                                               
+                                                                                
+warning(){                                                                      
+    echo -e "\033[1;33mWARNING: \033[2;33m$@ \033[0m"                           
+}                                                                               
+                                                                                
+title(){                                                                        
+    NAME=$@                                                                     
+    left="----------------------------------------------=============<]"        
+    right="[>=============----------------------------------------------"       
+    half=$(expr ${#NAME} / 2)                                                   
+    echo "${left:half} $NAME ${right:0:-half}"                                  
+}                                                                               
+                                                                                
+stitle(){                                                                       
+    NAME=$@                                                                     
+    left="-----------------------------<]"                                      
+    right="[>-----------------------------"                                     
+    half=$(expr ${#NAME} / 2)                                                   
+    echo "${left:half} $NAME ${right:0:-half}"                                  
+}                                                                               
+                                                                                
+plus_str(){                                                                     
+    echo -e "\033[1;92m+\033[0m ${@}"                                           
+}                                                                               
+                                                                                
+minus_str(){                                                                    
+    echo -e "\033[1;31m-\033[0m ${@}"                                           
+}                                                                               
+                                                                                
+unknown_str(){                                                                  
+    echo -e "\033[1;93m|\033[0m ${@}"                                           
+}                                                                               
+
+check_mark_str(){
+	echo -e "\033[1;92m\u2714\033[0m ${@}"
+}
+
+cross_mark_str(){
+	echo -e "\033[1;31m\u2718\033[0m ${@}"
+}
+
+############################################################################### 
+# Mercurial Functions
+############################################################################### 
+
+hg_changes(){
+	LOC="$1"
+	cd $LOC; hg st
+}
+
+hg_not_pushed(){
+	LOC="$1"
+	cd $LOC; hg -q outgoing 2>&1
+}
+
+hg_pushed_print(){
+	LOCATION="$1"
+	upd=$(hg_not_pushed $LOCATION)
+	if [ -z "$upd" ]
+	then
+		check_mark_str "HG  - ${STUFF}"
+	else
+		cross_mark_str "HG  - ${STUFF}"
+	fi
+}
+
+find_hg_repo(){
+	# Remove '-type d' to also get the sub repos.
+	find /home/$USER -name ".hg" -exec dirname {} +
+}
+
+hg_status_print(){
+	LOCATION="$1"
+	upd=$(cd ${LOCATION};hg st) 
+    if [ -z "$upd" ]                                              
+    then                                                          
+        check_mark_str "HG  - ${STUFF}"                                           
+    else                                                          
+        cross_mark_str "HG  - ${STUFF}"                                          
+    fi                                                            
+}
+
+############################################################################### 
+# Git Functions
+############################################################################### 
+
+git_changes(){
+	LOC="$1"
+	cd $LOC; git status -s 2>&1
+}
+
+git_not_pushed(){
+	LOC="$1"
+	cd "$LOC"; git cherry -v 2>&1
+}
+
+git_pushed_print(){
+	LOCATION="$1"
+	upd=$(git_not_pushed $LOCATION)
+	if [ -z "$upd" ]
+	then
+		check_mark_str "GIT - ${STUFF}"
+	else
+		cross_mark_str "GIT - ${STUFF}"
+	fi
+}
+
+find_git_repo(){
+	# Remove '-type d' to also get the sub repos.
+	find /home/$USER -name ".git" -exec dirname {} +
+}
+
+git_status_print(){
+	LOCATION="$1"
+    upd=$(cd ${LOCATION}; git status --porcelain)                    
+    if [ -z "$upd" ]                                              
+    then                                                          
+        check_mark_str "GIT - ${STUFF}"                                           
+    else                                                          
+        cross_mark_str "GIT - ${STUFF}"                                          
+    fi                                                            
+}
+
+############################################################################### 
+# General Functions
+############################################################################### 
+
+find_all_repo(){
+	(find_hg_repo; find_git_repo) | sort
+}
+
+find_current_repo(){
+	# Sort for .get and .hg in the folders.
+	ls -d ./*
+}
+
+repo_list(){                                                                   
+    title "Commited repositories"
+	LOCS="$1"
+    for STUFF in $LOCS                                 
+    do                                                                        
+        if [ -d $STUFF ]                                                      
+        then                                                                  
+            GITLOC="${STUFF}/.git"                                            
+			HGLOC="${STUFF}/.hg"
+            if [ -e $GITLOC ]                                                 
+            then                                                              
+				git_status_print $STUFF
+			elif [ -e $HGLOC ]
+			then
+				hg_status_print $STUFF
+            else                                                              
+                unknown_str " .. - ${STUFF}"                                
+            fi                                                                
+        fi                                                                    
+    done                                                                      
+}   
+
+repo_pushed(){                                                                   
+    title "Pushed repositories"
+	LOCS="$1"
+    for STUFF in $LOCS                                 
+    do                                                                        
+        if [ -d $STUFF ]                                                      
+        then                                                                  
+            GITLOC="${STUFF}/.git"                                            
+			HGLOC="${STUFF}/.hg"
+            if [ -e $GITLOC ]                                                 
+            then                                                              
+				git_pushed_print $STUFF
+			elif [ -e $HGLOC ]
+			then
+				hg_pushed_print $STUFF
+            else                                                              
+                unknown_str " .. - ${STUFF}"                                
+            fi                                                                
+        fi                                                                    
+    done                                                                      
+}   
+
+help(){
+    echo "Usage: $0 [OPTIONS] [[TARGET] [COMMAND]]..."                          
+    echo ""                     
+    echo "Example: $0 -h"                                       
+    echo ""                                                                     
+    echo "Options:"                                                             
+    echo "  -h  Print the help menu (This one!)."    
+	echo "  -l  List repos commit state in current dir."
+	echo "  -u  List repos push state in current dir."
+	echo ""
+}
+
+while [[ $# -ge 1 ]]; do
+	KEY="$1"
+
+	case $KEY in
+		-h)
+			help
+			exit
+			;;
+		-a)
+			repo_list "$(find_all_repo)"
+			exit
+			;;
+		-l)
+			repo_list "$(ls -d ./*)"                                 
+			exit
+			;;
+		-u)
+            repo_pushed "$(ls -d ./*)"
+            exit
+			;;
+		*)
+			echo "Unknown option: $key"
+			echo ""
+			help
+			exit
+			;;
+	esac
+	shift
+done
+
