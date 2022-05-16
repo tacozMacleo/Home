@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+stitle(){
+    NAME=$@
+    left="-----------------------------<]"
+    right="[>-----------------------------"
+    half=$(expr ${#NAME} / 2)
+    echo "${left:half} $NAME ${right:0:-half}"
+}
+
+# IP_RANGE=$(ip -o a | awk '! /inet6/ && ! / lo/ {print $4}')
+ETHS=$(ip -4 -o a | awk '! / lo/ {print $2 "|" $4}')
+
+# For each line in IP_RANGE
+
+for ETH in $ETHS
+do
+	INTERFACE=$(echo $ETH | awk -F'|' '{print $1}')
+	IPRANGE=$(echo $ETH | awk -F'|' '{print $2}')
+	stitle "$INTERFACE"
+	STARTVALUE=$(echo $IPRANGE| awk -F'.' '{print $1}') 
+	nmap -sn $IPRANGE | awk '/\('$STARTVALUE'/ { gsub(/[()]/,""); print $6 ":\t" $5}'
+	echo ""
+done
+
