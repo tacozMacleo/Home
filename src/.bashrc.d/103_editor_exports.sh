@@ -1,1 +1,1 @@
-export EDITOR=$(which vim)
+export EDITOR=$(command -v vim)
