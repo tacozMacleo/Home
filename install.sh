@@ -75,15 +75,19 @@ sudo yum --assumeyes install gnome-tweaks
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub com.github.liferooter.textpieces
 flatpak install falthub com.discordapp.Discord
+# Flatseal
 
 # # Install Game stuff
 # sudo yum --assumeyes install steam steam-devices lutris
 
 # Install utils
+sudo dnf groupinstall "Development Tools" "Development Libraries"
+sudo dnf install glibc-devel.i686, libstdc++-devel.i686
 sudo yum --assumeyes install exa bat kitty
 
 # Install rust
-sudo yum --assumeyes install rust.x86_64 cargo
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+#sudo yum --assumeyes install rust.x86_64 cargo
 
 # Install Python Stuff
 sudo yum --assumeyes install python3-pip
@@ -107,7 +111,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 
 
 
-# "https://extensions.gnome.org//extension/1319/gsconnect/"
+# "https://extensions.gnome.org/extension/1319/gsconnect/"
 # "https://extensions.gnome.org/extension/3960/transparent-top-bar-adjustable-transparency/"
 # "https://extensions.gnome.org/extension/2890/tray-icons-reloaded/"
-
+# "https://extensions.gnome.org//extension/1485/workspace-matrix/"
+# "https://extensions.gnome.org/extension/4405/replace-activities-text/"
