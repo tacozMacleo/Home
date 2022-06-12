@@ -83,7 +83,7 @@ flatpak install falthub com.discordapp.Discord
 # Install utils
 sudo dnf groupinstall "Development Tools" "Development Libraries"
 sudo dnf install glibc-devel.i686, libstdc++-devel.i686
-sudo yum --assumeyes install exa bat kitty
+sudo yum --assumeyes install exa bat kitty rmlint
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
