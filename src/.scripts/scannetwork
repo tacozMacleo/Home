@@ -14,9 +14,12 @@ for ETH in $ETHS
 do
 	INTERFACE=$(echo $ETH | awk -F'|' '{print $1}')
 	IPRANGE=$(echo $ETH | awk -F'|' '{print $2}')
+	if [[ "$INTERFACE" == *"docker"* ]] then
+		continue
+	fi
 	stitle "$INTERFACE"
 	STARTVALUE=$(echo $IPRANGE| awk -F'.' '{print $1}') 
-	nmap -sn $IPRANGE | awk '/\('$STARTVALUE'/ { gsub(/[()]/,""); print $6 ":\t" $5}'
+	nmap -sP $IPRANGE | awk '/\('$STARTVALUE'/ { gsub(/[()]/,""); print $6 ":\t" $5}'
 	echo ""
 done
 
