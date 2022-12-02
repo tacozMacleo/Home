@@ -60,6 +60,9 @@ sudo dnf groupupdate core
 sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video
 
+# File Transfer Bluetooth
+sudo dnf install -y bluez-obexd
+
 # install sublime:
 sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
 sudo dnf --assumeyes config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
@@ -69,6 +72,19 @@ sudo dnf --assumeyes install sublime-text
 dnf install vlc
 #dnf install python-vlc #(optional)
 
+## Install mdp
+git clone https://github.com/visit1985/mdp.git
+(cd mdp; sudo make; sudo make install)
+rm -rf mdp
+
+## Intall Docker
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo systemctl enable docker
+pip install docker-compose
 
 # Install Gnome Tweaks & and more.
 sudo yum --assumeyes install gnome-tweaks
