@@ -47,6 +47,7 @@ sudo dnf --assumeyes install gitflow git
 
 ## Git Settings:
 git config --global alias.st "status -s"
+git config --global alias.uncommit "reset --soft HEAD^"
 git config --global alias.history "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Taken from: https://rpmfusion.org/Configuration
