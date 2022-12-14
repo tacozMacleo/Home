@@ -1,14 +1,14 @@
 #! /bin/sh
 
-SERVICE_LIST=$(docker service ls -q)
+SERVICE_LIST=$(docker service ls -q 2> /dev/null)
 PROCESS_LIST=$(docker ps -q)
 PROCESS_ALL_LIST=$(docker ps -a -q)
 IMAGE_LIST=$(docker images -q)
 
-[ -z "$SERVICE_LIST"] || docker service rm ${SERVICE_LIST};
-[ -z "$PROCESS_LIST"] || docker kill ${PROCESS_LIST};
-[ -z "$PROCESS_ALL_LIST"] || docker rm --force ${PROCESS_ALL_LIST};
-[ -z "$IMAGE_LIST"] || docker rmi --force ${IMAGE_LIST}
+[ -z "$SERVICE_LIST" ] || docker service rm ${SERVICE_LIST};
+[ -z "$PROCESS_LIST" ] || docker kill ${PROCESS_LIST};
+[ -z "$PROCESS_ALL_LIST" ] || docker rm --force ${PROCESS_ALL_LIST};
+[ -z "$IMAGE_LIST" ] || docker rmi --force ${IMAGE_LIST}
 
 
 
