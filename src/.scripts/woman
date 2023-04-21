@@ -1,0 +1,1 @@
+"$@" --help 2>&1 | bat -pl help
