@@ -110,6 +110,11 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 sudo yum --assumeyes install python3-pip
 pip3 install ipython
 
+# Install Codium
+sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
+sudo yum --assumeyes install codium
+
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
 
