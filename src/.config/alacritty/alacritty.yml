@@ -184,13 +184,13 @@ window:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# Colors (Monokai Soda)
+# #Colors (Monokai Soda)
 # colors:
 #   # Default colors
 #   primary:
 #     background: '#1a1a1a'
 #     foreground: '#c4c5b5'
-#  
+ 
 #   # Normal colors
 #   normal:
 #     black:   '#1a1a1a'
@@ -201,7 +201,7 @@ window:
 #     magenta: '#f4005f'
 #     cyan:    '#58d1eb'
 #     white:   '#c4c5b5'
-# 
+
 #   # Bright colors
 #   bright:
 #     black:   '#625e4c'
@@ -213,13 +213,13 @@ window:
 #     cyan:    '#58d1eb'
 #     white:   '#f6f6ef'
 
-#Colors (Monokai Pro)
+# # Colors (Monokai Pro)
 # colors:
 #   # Default colors
 #   primary:
 #     background: '0x2c2525'
 #     foreground: '0xfff1f3'
-# 
+
 #   # Normal colors
 #   normal:
 #     black:   '0x2c2525'
@@ -230,7 +230,7 @@ window:
 #     magenta: '0xa8a9eb'
 #     cyan:    '0x85dacc'
 #     white:   '0xfff1f3'
-# 
+
 #   # Bright colors
 #   bright:
 #     black:   '0x72696a'
@@ -242,8 +242,8 @@ window:
 #     cyan:    '0x85dacc'
 #     white:   '0xfff1f3'
 
-# Dimmed- Monokai
-color:
+# Dimmed - Monokai
+colors:
   primary:
     background: "#1e1e1e"
     foreground: "#b8bcb9"
@@ -266,32 +266,6 @@ color:
     magenta: "#fb0067"
     cyan: "#2d6f6c"
     white: "#fcffb8"
-
-# # Dimmed- Monokai - Fixed
-# color:
-#   primary:
-#     background: "#1e1e1e"
-#     foreground: "#b8bcb9"
-#   normal:
-#     black: "#3a3c43"
-#     red: "#be3e48"
-#     green: "#869a3a"
-#     yellow: "#c4a535"
-#     blue: "#4e76a1"
-#     magenta: "#855b8d"
-#     cyan: "#568ea3"
-#     white: "#b8bcb9"
-# 
-#   bright:
-#     black: "#cfd0cf" 
-#     red: "#fb001e"
-#     green: "#0e712e"
-#     yellow: "#c37033"
-#     blue: "#176ce3"
-#     magenta: "#fb0067"
-#     cyan: "#2d6f6c"
-#     white: "#fcffb8"
-
 
 # cursor #f83d19
 #selection_background #292c31
