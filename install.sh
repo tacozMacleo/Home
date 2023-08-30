@@ -118,6 +118,9 @@ sudo yum --assumeyes install codium
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
 
+# Install KDE-Connect CLI.
+sudo yum --assumeyes install kde-connect
+
 # Setting up Gnome Window
 gsettings set org.gnome.mutter center-new-windows true
 gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize:'

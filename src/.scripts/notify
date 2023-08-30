@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# notify-send 
+# Execute what is writen after this cmd, but notify if successful or failed.
+# Make sure it also will work with KDE Connect
+
+notify-send "$@"
+KDE_DEVICES=$(kdeconnect-cli -a --id-only)
+
+[ -z "$KDE_DEVICES" ] && kdeconnect-cli --device ${KDE_DEVICES} --ping-msg "$@"
