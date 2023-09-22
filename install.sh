@@ -86,9 +86,9 @@ pip install docker-compose
 sudo yum --assumeyes install gnome-tweaks
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub com.github.liferooter.textpieces
-flatpak install falthub com.discordapp.Discord
+flatpak install flathub com.discordapp.Discord
+flatpak install flathub com.github.marktext.marktext # Marktext
 # Flatseal  com.github.tchx84.Flatseal
-# LogSeq    com.logseq.Logseq
 # Color picker nl.hjdskes.gcolor3
 
 # # Install Game stuff
