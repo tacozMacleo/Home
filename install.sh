@@ -64,11 +64,6 @@ sudo dnf groupupdate sound-and-video
 # File Transfer Bluetooth
 sudo dnf install -y bluez-obexd
 
-# install sublime:
-sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
-sudo dnf --assumeyes config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-sudo dnf --assumeyes install sublime-text
-
 # Install VLC
 dnf install vlc
 #dnf install python-vlc #(optional)
@@ -92,7 +87,9 @@ sudo yum --assumeyes install gnome-tweaks
 flatpak install flathub com.mattjakeman.ExtensionManager
 flatpak install flathub com.github.liferooter.textpieces
 flatpak install falthub com.discordapp.Discord
-# Flatseal
+# Flatseal  com.github.tchx84.Flatseal
+# LogSeq    com.logseq.Logseq
+# Color picker nl.hjdskes.gcolor3
 
 # # Install Game stuff
 # sudo yum --assumeyes install steam steam-devices lutris
@@ -118,8 +115,8 @@ sudo yum --assumeyes install codium
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
 
-# Install KDE-Connect CLI.
-sudo yum --assumeyes install kde-connect
+# # Install KDE-Connect CLI.
+# sudo yum --assumeyes install kde-connect
 
 # Setting up Gnome Window
 gsettings set org.gnome.mutter center-new-windows true

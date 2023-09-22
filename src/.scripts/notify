@@ -5,6 +5,6 @@
 # Make sure it also will work with KDE Connect
 
 notify-send "$@"
-KDE_DEVICES=$(kdeconnect-cli -a --id-only)
+# KDE_DEVICES=$(kdeconnect-cli -a --id-only)
 
-[ -z "$KDE_DEVICES" ] && kdeconnect-cli --device ${KDE_DEVICES} --ping-msg "$@"
+# [ -z "$KDE_DEVICES" ] && kdeconnect-cli --device ${KDE_DEVICES} --ping-msg "$@"
