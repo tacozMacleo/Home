@@ -76,7 +76,7 @@ rm -rf mdp
 ## Intall Docker
 sudo dnf -y install dnf-plugins-core
 sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
@@ -84,10 +84,10 @@ pip install docker-compose
 
 # Install Gnome Tweaks & and more.
 sudo yum --assumeyes install gnome-tweaks
-flatpak install flathub com.mattjakeman.ExtensionManager
-flatpak install flathub com.github.liferooter.textpieces
-flatpak install flathub com.discordapp.Discord
-flatpak install flathub com.github.marktext.marktext # Marktext
+flatpak install --assumeyes flathub com.mattjakeman.ExtensionManager
+flatpak install --assumeyes flathub com.github.liferooter.textpieces
+flatpak install --assumeyes flathub com.discordapp.Discord
+flatpak install --assumeyes flathub com.github.marktext.marktext # Marktext
 # Flatseal  com.github.tchx84.Flatseal
 # Color picker nl.hjdskes.gcolor3
 
@@ -97,11 +97,12 @@ flatpak install flathub com.github.marktext.marktext # Marktext
 # Install utils
 sudo dnf groupinstall "Development Tools" "Development Libraries"
 sudo dnf install glibc-devel.i686, libstdc++-devel.i686
-sudo yum --assumeyes install exa bat kitty rmlint
+sudo yum --assumeyes install exa bat rmlint
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 #sudo yum --assumeyes install rust.x86_64 cargo
+
 
 # Install Python Stuff
 sudo yum --assumeyes install python3-pip
@@ -136,5 +137,4 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 # "https://extensions.gnome.org/extension/1319/gsconnect/"
 # "https://extensions.gnome.org/extension/3960/transparent-top-bar-adjustable-transparency/"
 # "https://extensions.gnome.org/extension/2890/tray-icons-reloaded/"
-# "https://extensions.gnome.org//extension/1485/workspace-matrix/"
 # "https://extensions.gnome.org/extension/4405/replace-activities-text/"
