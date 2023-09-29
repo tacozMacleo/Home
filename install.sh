@@ -43,7 +43,7 @@ LC_ALL= ' | sudo tee /etc/locale.conf
 
 # Install git Flow:
 sudo dnf --assumeyes copr enable elegos/gitflow
-sudo dnf --assumeyes install gitflow git
+sudo dnf install --assumeyes gitflow git
 
 ## Git Settings:
 git config --global alias.st "status -s"
@@ -52,20 +52,20 @@ git config --global alias.history "log --color --graph --pretty=format:'%Cred%h%
 
 # Taken from: https://rpmfusion.org/Configuration
 # Setup non-free repositories:
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install --assumeyes https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # Appstream metadata:
-sudo dnf groupupdate core
+sudo dnf groupupdate --assumeyes core
 
 # Multimedia post-install
-sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-sudo dnf groupupdate sound-and-video
+sudo dnf groupupdate --assumeyes multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf groupupdate --assumeyes sound-and-video
 
 # File Transfer Bluetooth
-sudo dnf install -y bluez-obexd
+sudo dnf install --assumeyes bluez-obexd
 
 # Install VLC
-dnf install vlc
+dnf install --assumeyes vlc
 #dnf install python-vlc #(optional)
 
 ## Install mdp
@@ -74,16 +74,16 @@ git clone https://github.com/visit1985/mdp.git
 rm -rf mdp
 
 ## Intall Docker
-sudo dnf -y install dnf-plugins-core
-sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+sudo dnf install --assumeyes dnf-plugins-core
+sudo dnf config-manager --assumeyes --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install --assumeyes docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
 pip install docker-compose
 
 # Install Gnome Tweaks & and more.
-sudo yum --assumeyes install gnome-tweaks
+sudo yum install --assumeyes gnome-tweaks
 flatpak install --assumeyes flathub com.mattjakeman.ExtensionManager
 flatpak install --assumeyes flathub com.github.liferooter.textpieces
 flatpak install --assumeyes flathub com.discordapp.Discord
@@ -95,14 +95,17 @@ flatpak install --assumeyes flathub com.github.marktext.marktext # Marktext
 # sudo yum --assumeyes install steam steam-devices lutris
 
 # Install utils
-sudo dnf groupinstall "Development Tools" "Development Libraries"
-sudo dnf install glibc-devel.i686, libstdc++-devel.i686
+sudo dnf groupinstall --assumeyes "Development Tools" "Development Libraries"
+sudo dnf install --assumeyes glibc-devel.i686, libstdc++-devel.i686
 sudo yum --assumeyes install exa bat rmlint
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 #sudo yum --assumeyes install rust.x86_64 cargo
 
+# Terminal
+sudo dnf --assumeyes cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
+cargo install alacritty
 
 # Install Python Stuff
 sudo yum --assumeyes install python3-pip
