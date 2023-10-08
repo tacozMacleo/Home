@@ -106,6 +106,11 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 # Terminal
 sudo dnf --assumeyes cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
 cargo install alacritty
+sudo wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg -O /usr/share/pixmaps/Alacritty.svg
+wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
+sudo desktop-file-install Alacritty.desktop
+sudo update-desktop-database
+rm Alacritty.desktop
 
 # Install Python Stuff
 sudo yum --assumeyes install python3-pip
@@ -131,8 +136,8 @@ gsettings set org.gnome.desktop.interface enable-hot-corners false
 
 # Terminal Shortcut!
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Launch Kitty"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "kitty"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "Launch Alacritty "
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "alacritty -e tmux"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Ctrl><Alt>t"
 
 
