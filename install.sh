@@ -60,6 +60,7 @@ sudo dnf groupupdate --assumeyes core
 # Multimedia post-install
 sudo dnf groupupdate --assumeyes multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate --assumeyes sound-and-video
+sudo yum install --assumeyes --allowerasing ffmpeg
 
 # File Transfer Bluetooth
 sudo dnf install --assumeyes bluez-obexd
@@ -104,7 +105,7 @@ curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 #sudo yum --assumeyes install rust.x86_64 cargo
 
 # Terminal
-sudo dnf --assumeyes cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
+sudo dnf install --assumeyes cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
 cargo install alacritty
 sudo wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg -O /usr/share/pixmaps/Alacritty.svg
 wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
