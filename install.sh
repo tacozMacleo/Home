@@ -60,6 +60,7 @@ sudo dnf groupupdate --assumeyes core
 # Multimedia post-install
 sudo dnf groupupdate --assumeyes multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate --assumeyes sound-and-video
+sudo yum install --assumeyes ffmpeg --allowerasing
 
 # File Transfer Bluetooth
 sudo dnf install --assumeyes bluez-obexd
