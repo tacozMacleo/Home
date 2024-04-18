@@ -40,14 +40,23 @@ find_repo(){
     DEPTH="$1"
     COUNT="0"
     cur_dir="${PWD}"
+
+	if [ -n "$(git rev-parse --show-toplevel 2> /dev/null)" ]
+	then
+		git rev-parse --show-toplevel 2> /dev/null
+		return 0
+	fi
+
     while [ "$cur_dir" != "/" ]
     do
         if [ -f "${cur_dir}/.hg/dirstate" ]
         then
+			# hg root
             echo "${cur_dir}" && break
         fi
         if [ -e "${cur_dir}/.git" ]
         then
+			# git rev-parse --show-toplevel
             echo "${cur_dir}" && break
         fi
         cur_dir="$(dirname "$cur_dir")"
@@ -56,54 +65,62 @@ find_repo(){
 
 
 get_repo_type(){
+	if [ -n "$(git rev-parse --show-toplevel 2> /dev/null)" ]
+    then
+        echo "git"
+		return 0
+    fi
+
     LOC="$(find_repo)"
     if [ -f "${LOC}/.hg/dirstate" ]
     then
         echo "hg"
     fi
-    if [ -e "${LOC}/.git" ]
-    then
-        echo "git"
-    fi
 }
 
 get_repo_branch(){
+	if [ -n "$(git rev-parse --show-toplevel 2> /dev/null)" ]
+    then
+        git rev-parse --abbrev-ref HEAD 2> /dev/null
+		return 0
+    fi
+
     LOC="$(find_repo)"
     if [ -f "${LOC}/.hg/dirstate" ]
     then
         cat "${LOC}/.hg/branch"
     fi
-    if [ -e "${LOC}/.git" ]
-    then
-        (cd "$LOC"; git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    fi
 }
 
 get_repo_hash(){
+	if [ -n "$(git rev-parse --show-toplevel 2> /dev/null)" ]
+    then
+        git rev-parse HEAD 2> /dev/null | cut -c-12
+		return 0
+    fi
+
     LOC="$(find_repo)"
     if [ -f "${LOC}/.hg/dirstate" ]
     then
         echo "$(xxd -ps -l 6 ${LOC}/.hg/dirstate)"
     fi
-    if [ -e "${LOC}/.git" ]
-    then
-        echo "$(cd "$LOC"; git rev-parse HEAD 2> /dev/null| cut -c-12)"
-    fi
 }
 
 get_repo_dirty(){
-    LOC="$(find_repo)"
     local DIRTY="\033[0;31m"  # Red
     local COMMITED="\033[0;32m"  # Green
     local PUSHED="\033[0;34m"  # Blue
+	if [ -n "$(git rev-parse --show-toplevel 2> /dev/null)" ]
+    then
+        # [ -n "$(cd "$cur_dir"; git status -s)" ] && echo -e "$DIRTY" || echo -e "$GREEN"
+        [ -n "$(git status -s 2>&1)" ] && echo -e "$DIRTY" ||  ([ -n "$(git cherry -v 2>&1)" ] && echo -e "$COMMITED" || echo -e "$PUSHED")
+		return 0
+    fi
+
+    LOC="$(find_repo)"
     if [ -f "${LOC}/.hg/dirstate" ]
     then
         [ -n "$(cd "$LOC"; hg st)" ] && echo -e "$DIRTY" || echo -e "$COMMITED"
-    fi
-    if [ -e "${LOC}/.git" ]
-    then
-        # [ -n "$(cd "$cur_dir"; git status -s)" ] && echo -e "$DIRTY" || echo -e "$GREEN"
-        [ -n "$(cd "$cur_dir"; git status -s 2>&1)" ] && echo -e "$DIRTY" ||  ([ -n "$(cd "$LOC"; git cherry -v 2>&1)" ] && echo -e "$COMMITED" || echo -e "$PUSHED")
     fi
 }
 
