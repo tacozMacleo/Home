@@ -81,7 +81,7 @@ sudo dnf install --assumeyes docker-ce docker-ce-cli containerd.io docker-compos
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
-pip install docker-compose
+sudo yum install --assumeyes docker-compose.x86_64
 
 # Install Gnome Tweaks & and more.
 sudo yum install --assumeyes gnome-tweaks
