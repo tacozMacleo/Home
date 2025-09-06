@@ -63,11 +63,11 @@ sudo dnf groupupdate --assumeyes sound-and-video
 sudo yum install --assumeyes --allowerasing ffmpeg
 
 # File Transfer Bluetooth
-sudo dnf install --assumeyes bluez-obexd
+# sudo dnf install --assumeyes bluez-obexd
 
 # Install VLC
 dnf install --assumeyes vlc
-#dnf install python-vlc #(optional)
+# dnf install python-vlc #(optional)
 
 ## Install mdp
 git clone https://github.com/visit1985/mdp.git
@@ -102,35 +102,44 @@ sudo yum --assumeyes install exa bat rmlint
 
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+source ~/.bachrc
 #sudo yum --assumeyes install rust.x86_64 cargo
 
 # Terminal
 sudo dnf install --assumeyes cmake freetype-devel fontconfig-devel libxcb-devel libxkbcommon-devel g++
 cargo install alacritty
-sudo wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/logo/alacritty-term.svg -O /usr/share/pixmaps/Alacritty.svg
-wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/linux/Alacritty.desktop
-sudo desktop-file-install Alacritty.desktop
+sudo cp cashed_data/Alacritty.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install cashed_data/Alacritty.desktop
 sudo update-desktop-database
-rm Alacritty.desktop
 
 # Install Python Stuff
-sudo yum --assumeyes install python3-pip
-pip3 install ipython
+sudo yum --assumeyes install uv.x86_64
+uv tools install ipython
 
-# Install Codium
-sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
-printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
-sudo yum --assumeyes install codium
+# Install Javascript Stuff
+sudo yum install nodejs-npm
+
+# # Install Codium
+# sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+# printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=download.vscodium.com\nbaseurl=https://download.vscodium.com/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg\nmetadata_expire=1h" | sudo tee -a /etc/yum.repos.d/vscodium.repo
+# sudo yum --assumeyes install codium
+
+# Install Windsurf
+sudo rpm --import https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/yum/RPM-GPG-KEY-windsurf
+printf "[windsurf]\nname=Windsurf Repository\nbaseurl=https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/yum/repo/\nenabled=1\nautorefresh=1\ngpgcheck=1\ngpgkey=https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/yum/RPM-GPG-KEY-windsurf" | sudo tee /etc/yum.repos.d/windsurf.repo
+sudo yum --assumeyes install windsurf
 
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
+sudo yum --assumeyes install bat
+cargo install exa
 
 # # Install KDE-Connect CLI.
 # sudo yum --assumeyes install kde-connect
 
 # Setting up Gnome Window
 gsettings set org.gnome.mutter center-new-windows true
-gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize:'
+# gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize:'
 
 # General Gnome Settings
 gsettings set org.gnome.desktop.interface enable-hot-corners false
