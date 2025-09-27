@@ -96,11 +96,6 @@ flatpak install --assumeyes flathub com.github.marktext.marktext # Marktext
 # # Install Game stuff
 # sudo yum --assumeyes install steam steam-devices lutris
 
-# Install utils
-sudo dnf groupinstall --assumeyes "Development Tools" "Development Libraries"
-sudo dnf install --assumeyes glibc-devel.i686, libstdc++-devel.i686
-sudo yum --assumeyes install exa bat rmlint
-
 # Install rust
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 source ~/.bachrc
@@ -112,6 +107,13 @@ cargo install alacritty
 sudo cp cashed_data/Alacritty.svg /usr/share/pixmaps/Alacritty.svg
 sudo desktop-file-install cashed_data/Alacritty.desktop
 sudo update-desktop-database
+
+# Install utils
+sudo dnf groupinstall --assumeyes "Development Tools" "Development Libraries"
+sudo dnf install --assumeyes glibc-devel.i686, libstdc++-devel.i686
+sudo yum --assumeyes install bat rmlint
+cargo install eza
+
 
 # Install Python Stuff
 sudo yum --assumeyes install uv.x86_64
@@ -132,8 +134,6 @@ sudo yum --assumeyes install windsurf
 
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
-sudo yum --assumeyes install bat
-cargo install exa
 
 # # Install KDE-Connect CLI.
 # sudo yum --assumeyes install kde-connect

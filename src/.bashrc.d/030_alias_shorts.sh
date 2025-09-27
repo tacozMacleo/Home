@@ -1,4 +1,4 @@
-alias ll='exa -hal --git --group-directories-first'
+alias ll='eza -halo --git --group-directories-first'
 alias la='ls -A'
 alias l='ls -CF'
 
