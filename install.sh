@@ -66,7 +66,7 @@ sudo yum install --assumeyes --allowerasing ffmpeg
 # sudo dnf install --assumeyes bluez-obexd
 
 # Install VLC
-dnf install --assumeyes vlc
+dnf install --assumeyes vlc vlc-plugin-ffmpeg
 # dnf install python-vlc #(optional)
 
 ## Install mdp
