@@ -1,4 +1,4 @@
 
 #PS1="\$(show_time)\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$RED\$(errec)$REPOSTRING\$ "
 # PS1="[\D{%d-%b-%y %T}]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$RED\$(errec)$REPOSTRING\$ "
-PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$RED\$(errec)$REPOSTRING\$ "
+PS1="$DATESTRING\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$RED\$(errec)$REPOSTRING\$ "

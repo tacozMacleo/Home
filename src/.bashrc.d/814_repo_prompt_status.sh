@@ -126,3 +126,9 @@ get_repo_dirty(){
 
 REPOSTRING="$FILLER\$(if_repo '[')\$(get_repo_type)\$(if_repo ':')\[\$(get_repo_dirty)\]\$(get_repo_branch)$FILLER\$(if_repo '@')$HASH\$(get_repo_hash)$FILLER\$(if_repo ']')$ENDCLR"
 
+get_date(){
+    # date +%Y/%m/%d-%H:%M:%s
+	date +%H:%M:%S
+}
+
+DATESTRING="$BLUE[\$(get_date)]$ENDCLR"
