@@ -121,6 +121,7 @@ uv tools install ipython
 
 # Install Javascript Stuff
 sudo yum install nodejs-npm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 # # Install Codium
 # sudo rpmkeys --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
@@ -134,6 +135,9 @@ sudo yum --assumeyes install windsurf
 
 # install Others
 sudo yum --assumeyes install nmap unzip unrar vim-enhanced
+
+# Network utils.
+npm install -g localtunnel
 
 # # Install KDE-Connect CLI.
 # sudo yum --assumeyes install kde-connect
