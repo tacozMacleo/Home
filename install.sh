@@ -88,8 +88,11 @@ sudo yum install --assumeyes docker-compose.x86_64
 sudo yum install --assumeyes gnome-tweaks
 flatpak install --assumeyes flathub com.mattjakeman.ExtensionManager
 flatpak install --assumeyes flathub com.github.liferooter.textpieces
-flatpak install --assumeyes flathub com.discordapp.Discord
+flatpak install --assumeyes flatub nl.hjdskes.gcolor3 # Color picker.
+# flatpak install --assumeyes flathub com.discordapp.Discord
 flatpak install --assumeyes flathub com.github.marktext.marktext # Marktext
+flatpak install --assumeyes flathub me.iepure.devtoolbox
+flatpak isntall --assumeyes flathub re.sonny.OhMySVG
 # Flatseal  com.github.tchx84.Flatseal
 # Color picker nl.hjdskes.gcolor3
 
