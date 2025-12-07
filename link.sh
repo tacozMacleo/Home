@@ -8,4 +8,3 @@ ln -s ${BASEDIR}/src/.vimrc ~/.
 ln -s ${BASEDIR}/src/.vim ~/.
 ln -s ${BASEDIR}/src/.scripts ~/.
 ln -s ${BASEDIR}/src/.config/alacritty ~/.config/.
-ln -s ${BASEDIR}/src/.config/kitty ~/.config/.
